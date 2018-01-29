@@ -1,3 +1,10 @@
+<?
+  require_once('../../script/config.php');
+  if(!isset($_COOKIE['token']) || !isset($_COOKIE['usr_id']))
+  {
+    header('Location: ../');
+  }
+?>
 <!DOCTYPE html>
 <script src="/js/jquery.min.js"></script>
 <html lang="en">
@@ -14,12 +21,12 @@
   <link rel="stylesheet" href="/css/critical.css" lazyload="1">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400,400i,700,700i|Material+Icons&amp;subset=thai" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kanit:300,300i,400,400i,700,700i|Material+Icons&amp;subset=thai" rel="stylesheet">
 
 
   <!-- Detail -->
   <meta name="Title" content="Dockr">
-  <meta name="Keywords" content="Dockr,mwit">
+  <meta name="Keywords" content="dockr,mwit">
   <meta name="Description" content="Dockr by Mahidol Wittayanusorn School">
 
   <!-- Theme Color -->
@@ -67,6 +74,12 @@
   .thai
   {
     font-family: 'Kanit', sans-serif;
+    font-weight: 300;
+  }
+  .thaib
+  {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
   }
   header, main, footer, .container, nav {
   padding-left: 300px;
@@ -116,35 +129,60 @@
      </div></li>
      <li><a href="../" class="thai">หน้าหลัก</a></li>
      <li class="active"><a href="#!" class="thai">จัดการ container</a></li>
-    <li><a href="#!" class="thai red-text">ออกจากระบบ</a></li>
+    <li><a href="/logout.php" class="thai red-text">ออกจากระบบ</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">© <? if(date("Y")>2017){ echo '2017-'; } echo date("Y"); ?> Phumrapee Limpianchop</a></li>
   </ul>
 
   <div class="container">
     <div class="row">
-      <div class="col l8 offset-l2 s12">
+      <div class="col l12 s12">
         <div class="card">
           <div class="card-content">
             <span class="card-title thai">ระบบจัดการ container</span>
             <div class="row">
-              <div class="col s6"><a href="../" class="btn blue waves-effect waves-light thai">ย้อนกลับ</a></div>
-              <div class="col s6"><a href="#concreate" class="btn blue waves-effect waves-light modal-trigger thai">สร้าง container ใหม่</a></div>
+              <div class="col s3"><a href="../" class="btn blue waves-effect waves-light thai col s12">ย้อนกลับ</a></div>
+              <div class="col s9"><a href="#concreate" class="btn blue waves-effect waves-light modal-trigger thai col s12">สร้าง container ใหม่</a></div>
             </div>
             <div class="row">
-              <div class="col l3 s6">
+              <?
+                $sql="SELECT * FROM `".$_COOKIE['usr_id']."` WHERE 1";
+                $query=mysql_query($sql);
+                while($row=mysql_fetch_array($query))
+                {
+                  if(time()>$row[2])
+                  {
+              ?>
+              <div class="col l4 s6">
                 <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light"><img src="" alt=""></div>
+                  <div class="card-image waves-effect waves-block waves-light"><img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER"></div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">TensorFlowGPU<i class="material-icons right">more_vert</i></span>
-                    <p>CONTENT</p>
+                    <span class="card-title activator grey-text text-darken-4"><? echo $row[0]; ?><i class="material-icons right">more_vert</i></span>
+                    <p class="thai">ระบบปกติ</p>
                   </div>
                   <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">TensorFlowGPU<i class="material-icons right">close</i></span>
-                    <p>CPU: 50%</p>
+                    <span class="card-title grey-text text-darken-4"><? echo $row[0]; ?><i class="material-icons right">close</i></span>
+                    <p>
+                    <br /><b>IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</p>
                   </div>
                 </div>
               </div>
+              <?
+                  }
+                  else
+                  {
+              ?>
+              <div class="col l4 s6">
+                <div class="card">
+                  <div class="card-content">
+                    <center><i class="large material-icons">error_outline</i><br /><h5 class="thai">กำลังสร้าง container</h5><br /><p class="thai">ใช้เวลาประมาณ 1-2 นาที</p></center>
+                  </div>
+                </div>
+              </div>
+              <?
+                  }
+                }
+              ?>
             </div>
             &nbsp;
           </div>
@@ -152,7 +190,38 @@
       </div>
     </div>
   </div>
-
+  <div id="concreate" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4 class="thai">กำลังสร้าง Container</h4>
+      <div class="row">
+        <form action="concreate_act.php" method="POST">
+        <div class="col l6 offset-l3 s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="concre_name" name="concre_name" type="text" class="validate">
+              <label for="concre_name">Container Name</label>
+            </div>
+            <div class="input-field col s6">
+              <select name="concre_image">
+                <option value="" disabled selected>Choose images</option>
+                <option value="centos">centos:latest</option>
+                <option value="ubuntu">ubuntu:latest</option>
+                <option value="mysql">mysql:8.0.3</option>
+                <option value="nginx">nginx:latest</option>
+                <option value="tensorflow">tensorflow:latest-gpu-py3</option>
+              </select>
+              <label>Images</label>
+            </div>
+            <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai" type="submit">สร้าง container</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+    </div>
+  </div>
 
   <script src="/js/materialize.js"></script>
   <script src="/js/init.js" async></script>
@@ -163,3 +232,6 @@
   </script>
 </body>
 </html>
+<?
+ mysql_close();
+?>

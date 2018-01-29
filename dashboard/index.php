@@ -1,3 +1,10 @@
+<?
+  require_once('../script/config.php');
+  if(!isset($_COOKIE['token']) || !isset($_COOKIE['usr_id']))
+  {
+    header('Location: ../');
+  }
+?>
 <!DOCTYPE html>
 <script src="/js/jquery.min.js"></script>
 <html lang="en">
@@ -18,9 +25,9 @@
 
 
   <!-- Detail -->
-  <meta name="Title" content="DMIS">
-  <meta name="Keywords" content="dmis,mwit">
-  <meta name="Description" content="DMIS by Mahidol Wittayanusorn School">
+  <meta name="Title" content="Dockr">
+  <meta name="Keywords" content="dockr,mwit">
+  <meta name="Description" content="Dockr by Mahidol Wittayanusorn School">
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#0d47a1">
@@ -116,7 +123,7 @@
      </div></li>
      <li class="active"><a href="#!" class="thai">หน้าหลัก</a></li>
      <li><a href="conmanage" class="thai">จัดการ container</a></li>
-    <li><a href="#!" class="thai red-text">ออกจากระบบ</a></li>
+    <li><a href="/logout.php" class="thai red-text">ออกจากระบบ</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">© <? if(date("Y")>2017){ echo '2017-'; } echo date("Y"); ?> Phumrapee Limpianchop</a></li>
   </ul>
@@ -136,18 +143,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                <?
+                  $sql="SELECT `con_name` FROM `".$_COOKIE['usr_id']."` WHERE 1";
+                  $query=mysql_query($sql);
+                  while($row=mysql_fetch_array($query))
+                  {
+                ?>
                   <tr>
-                    <td>nginxSV</td>
-                    <td class="green-text">ปกติ</td>
+                    <td><? echo $row[0]; ?></td>
+                    <td class="green-text thai">ปกติ</td>
                   </tr>
-                  <tr>
-                    <td>TensorFlowGPU</td>
-                    <td class="orange-text">ทำงานหนักกว่า 1 ชม.</td>
-                  </tr>
-                  <tr>
-                    <td>MySQLSV</td>
-                    <td class="green-text">ปกติ</td>
-                  </tr>
+                <?
+                  }
+                  mysql_close();
+                ?>
                 </tbody>
               </table>
             </div>
@@ -160,8 +169,8 @@
           <div class="card-content">
             <span class="card-title thai">เมนูด่วน</span>
             <div class="row">
-              <a href="" class="btn waves-effect waves-light blue">ระบบจัดการ container</a>
-              <a href="" class="btn waves-effect waves-light orange">แจ้งปัญหาการใช้งาน</a>
+              <a href="conmanage" class="btn waves-effect waves-light blue thai">ระบบจัดการ container</a>
+              <a href="#" class="btn waves-effect waves-light orange thai">แจ้งปัญหาการใช้งาน</a>
             </div>
             &nbsp;
           </div>

@@ -1,4 +1,5 @@
 <?
+  date_default_timezone_set("Asia/Bangkok");
   $hostname='localhost';
   $username='dockr';
   $password='fdG2yUbx93DWrXcl';

@@ -1,3 +1,9 @@
+<?
+  if(isset($_COOKIE['token']) && isset($_COOKIE['usr_id']))
+  {
+    header('Location: dashboard/');
+  }
+?>
 <!DOCTYPE html>
 <script src="/js/jquery.min.js"></script>
 <html lang="en">
@@ -5,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DMIS</title>
+  <title>Dockr</title>
   <noscript>
     <META HTTP-EQUIV="Refresh" CONTENT="0;URL=js_err.html">
   </noscript>
@@ -19,9 +25,9 @@
 
 
   <!-- Detail -->
-  <meta name="Title" content="DMIS">
-  <meta name="Keywords" content="dmis,mwit">
-  <meta name="Description" content="DMIS by Mahidol Wittayanusorn School">
+  <meta name="Title" content="Dockr">
+  <meta name="Keywords" content="dockr,mwit">
+  <meta name="Description" content="Dockr by Mahidol Wittayanusorn School">
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#0d47a1">
@@ -74,25 +80,39 @@
           <div class="card-content">
             <span class="card-title">Login</span>
             <div class="row">
-              <? /*
+             <?
+                if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==4010)
+                {
+              ?>
               <div class="chip green lighten-1 white-text col s12">
                 <center>Logout Successfully :-)
                 <i class="close material-icons">close</i></center>
               </div>
+              <?
+                  setcookie('login_stat',null,time()-7200,'/');
+                }
+                else if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==7700)
+                {
+              ?>
               <div class="chip red lighten-1 white-text col s12">
                 <center>Invalid username/password :-(
                 <i class="close material-icons">close</i></center>
               </div>
-              */ ?>
+              <?
+                  setcookie('login_stat',null,time()-7200,'/');
+                }
+              ?>
+              <form action="login.php" method="POST">
               <div class="input-field col s12">
-                <input id="username_mo" type="text" class="validate" required>
+                <input id="username_mo" name="u" type="text" class="validate" required>
                 <label for="username_mo">Username</label>
               </div>
               <div class="input-field col s12">
-                <input id="password_mo" type="password" class="validate" required>
+                <input id="password_mo" name="p" type="password" class="validate" required>
                 <label for="password_mo">Password</label>
               </div>
-              <a class="btn waves-effect waves-light blue col s12" type="submit">LOGIN</a>
+              <button class="btn waves-effect waves-light blue col s12" type="submit">LOGIN</button>
+              </form>
             </div>
           </div>
         </div>

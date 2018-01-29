@@ -5,7 +5,8 @@
     $('.collapsible').collapsible();
     $('.modal').modal({
       startingTop: '4%',
-      endingTop: '10%'
+      endingTop: '10%',
+      complete: function() { console.log("Modal Closed"); }
     });
     $('.dropdown-button').dropdown({
       inDuration: 300,
