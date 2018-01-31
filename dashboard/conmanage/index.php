@@ -208,7 +208,7 @@
                 <option value="ubuntu">ubuntu:latest</option>
                 <option value="mysql">mysql:8.0.3</option>
                 <option value="nginx">nginx:latest</option>
-                <option value="tensorflow">tensorflow:latest-gpu-py3</option>
+                <option value="tensorflow">tensorflow:latest-py3</option>
               </select>
               <label>Images</label>
             </div>
