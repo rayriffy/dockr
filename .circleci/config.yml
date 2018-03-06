@@ -6,8 +6,8 @@ jobs:
       - image: rayriffy/php:centos
     steps:
       - run:
-          name: Update container
-          command: yum -y update
+          name: Remove components
+          command: yum remove -y git
       - checkout
       - run:
           name: Check PHP version
