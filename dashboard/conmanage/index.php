@@ -152,18 +152,22 @@
                 {
                   if(time()>$row[2])
                   {
+                    list($cache, $con_name) = explode("_",$row[0]);
               ?>
               <div class="col l4 s6">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light"><img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER"></div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4"><? echo $row[0]; ?><i class="material-icons right">more_vert</i></span>
-                    <p class="thai">ระบบปกติ</p>
+                    <span class="card-title activator grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">more_vert</i></span>
+                    <? if($row[4]) { ?><p class="thai">ระบบปกติ</p><? } else { ?><p class="thai">container ยังไม่ถูกเปิดใช้งาน</p><? } ?>
                   </div>
                   <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><? echo $row[0]; ?><i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">close</i></span>
                     <p>
                     <br /><b>IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</p>
+                  </div>
+                  <div class="card-action thai">
+                    <? if($row[4]) { ?><a class="red-text" href="constop_act.php?IP=<? echo $row[3]; ?>">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>">เปิดใช้งาน</a><? } ?>
                   </div>
                 </div>
               </div>
