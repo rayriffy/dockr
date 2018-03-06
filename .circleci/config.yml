@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/dockr
     docker:
-      - image: rayriffy/php:centos
+      - image: rayriffy/php:alpine
     steps:
       - checkout
       - run:
