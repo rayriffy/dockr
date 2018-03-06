@@ -5,6 +5,9 @@ jobs:
     docker:
       - image: rayriffy/php:centos
     steps:
+      - run:
+          name: Update container
+          command: yum -y update
       - checkout
       - run:
           name: Check PHP version
