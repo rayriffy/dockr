@@ -53,8 +53,12 @@ jobs:
           path: /root/dockr
       - store_artifacts:
           path: /root/phplint
-  deployment:
-    production:
-      branch: master
-      commands:
-        - scp -r dockr/* circleci@deploy.rayriffy.com:/usr/share/nginx/dockr.rayriffy.com/
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/dockr
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Server
+          command: scp -r dockr/* circleci@deploy.rayriffy.com:/usr/share/nginx/dockr.rayriffy.com/
