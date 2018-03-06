@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/dockr
     docker:
-      - image: rayriffy/php56:centos
+      - image: rayriffy/php:centos
     steps:
       - checkout
       - run:
