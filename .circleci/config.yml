@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/premwit
+    working_directory: ~/dockr
     docker:
       - image: centos:centos6.9
     steps:
@@ -48,8 +48,8 @@ jobs:
           name: Test Files
           command: |
             cd ~/phplint
-            ./vendor/bin/parallel-lint ~/premwit/*
+            ./vendor/bin/parallel-lint ~/dockr/*
       - store_artifacts:
-          path: /root/premwit
+          path: /root/dockr
       - store_artifacts:
-path: /root/phplint
+          path: /root/phplint
