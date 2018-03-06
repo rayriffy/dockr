@@ -5,9 +5,6 @@ jobs:
     docker:
       - image: rayriffy/php:centos
     steps:
-      - run:
-          name: Remove components
-          command: yum remove -y git
       - checkout
       - run:
           name: Check PHP version
