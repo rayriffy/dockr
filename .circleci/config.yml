@@ -3,22 +3,9 @@ jobs:
   build:
     working_directory: ~/dockr
     docker:
-      - image: centos:centos6.9
+      - image: rayriffy/php56:centos
     steps:
       - checkout
-      - run:
-          name: Update Container
-          command: yum update -y
-      - run:
-          name: Install Required Packages
-          command: yum install -y yum-utils ca-certificates curl sudo uglifyjs zip unzip git wget tar gcc gcc+ make nodejs npm
-      - run:
-          name: Install PHP 
-          command: |
-            yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-            yum install -y http://rpms.remirepo.net/enterprise/remi-release-6.rpm
-            yum-config-manager --enable remi-php56
-            yum install -y php php-curl php-xml php-ldap php-cli php-common php-mysql php-mcrypt php-gd php-zip php-fileinfo php-json
       - run:
           name: Check PHP version
           command: php -v
@@ -43,9 +30,9 @@ jobs:
             cd ~/phplint
             ./vendor/bin/parallel-lint ~/dockr/*
       - store_artifacts:
-          path: /root/dockr
+          path: ~/dockr
       - store_artifacts:
-          path: /root/phplint
+          path: ~/phplint
   deploy:
     machine:
         enabled: true
