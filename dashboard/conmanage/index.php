@@ -164,10 +164,23 @@
                   <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">close</i></span>
                     <p>
-                    <br /><b>IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</p>
+                    <br />
+                    <div class="row"><b>IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</div>
+                    <div class="row"><a href="#remove-<? echo $row[0]; ?>" class="red btn waves-effect waves-light modal-trigger thai col s12">ลบ container</a></div>
+                    </p>
                   </div>
                   <div class="card-action thai">
                     <? if($row[4]) { ?><a class="red-text" href="constop_act.php?IP=<? echo $row[3]; ?>">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>">เปิดใช้งาน</a><? } ?>
+                  </div>
+                </div>
+                <div id="remove-<? echo $row[0]; ?>" class="modal">
+                  <div class="modal-content">
+                    <h4>กำลังลบ container <? echo $con_name; ?></h4>
+                    <p>ยืนยันที่จะทำการลบ container <? echo $con_name; ?> หรือไม่? <font color="red">หากลบไปแล้วจะไม่สามารถกู้ข้อมูลกลับมาอีกได้</font></p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat red-text">ยืนยัน</a>
                   </div>
                 </div>
               </div>
