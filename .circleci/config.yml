@@ -48,8 +48,8 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            scp -C -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd -r ~/deploy.zip circleci@deploy.rayriffy.com:~/production/dockr.rayriffy.com
-            ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'unzip -o ~/production/dockr.rayriffy.com/deploy.zip -d ~/production/dockr.rayriffy.com && rm -rf ~/production/dockr.rayriffy.com/deploy.zip'
+            scp -C -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd -r ~/dockr_deploy.zip circleci@deploy.rayriffy.com:~/landing
+            ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'rm -rf ~/production/dockr.rayriffy.com/* && unzip ~/landing/dockr_deploy.zip -d ~/production/dockr.rayriffy.com && rm -rf ~/landing/dockr_deploy.zip'
       - store_artifacts:
           path: ~/deploy.zip
 workflows:
