@@ -43,10 +43,13 @@ jobs:
           fingerprints:
             - "c7:29:52:e0:f0:33:ca:91:1b:30:3a:96:1f:34:a7:fd"
       - run:
+          name: Zipping files
+          command: zip -r ~/deploy.zip ~/dockr/*
+      - run:
           name: Deploy to Server
           command: |
-            cd ~/dockr
-            scp -C -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd -r ~/dockr/* circleci@deploy.rayriffy.com:~/production/dockr.rayriffy.com
+            scp -C -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd -r ~/deploy.zip circleci@deploy.rayriffy.com:~/production/dockr.rayriffy.com
+            ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'unzip -j ~/production/dockr.rayriffy.com/deploy.zip && rm -rf ~/production/dockr.rayriffy.com/deploy.zip'
 workflows:
   version: 2
   build-and-deploy:
