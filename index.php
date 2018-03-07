@@ -114,6 +114,14 @@
               <button class="btn waves-effect waves-light blue col s12" type="submit">LOGIN</button>
               </form>
             </div>
+            <div class="row">
+              <div class="col s12">
+                <center class="grey-text darken-1">New user?</center>
+              </div>
+              <div class="col s12">
+                <a href="register" class="btn waves-effect waves-light blue darken-3 col s8 offset-s2">Register</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
