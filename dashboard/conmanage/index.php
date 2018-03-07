@@ -173,14 +173,14 @@
                     <? if($row[4]) { ?><a class="red-text" href="constop_act.php?IP=<? echo $row[3]; ?>">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>">เปิดใช้งาน</a><? } ?>
                   </div>
                 </div>
-                <div id="remove-<? echo $row[0]; ?>" class="modal">
+                <div id="remove-<? echo $row[0]; ?>" class="modal thai">
                   <div class="modal-content">
-                    <h4>กำลังลบ container <? echo $con_name; ?></h4>
+                    <h4>กำลังลบ container <? echo $con_name; ?>...</h4>
                     <p>ยืนยันที่จะทำการลบ container <? echo $con_name; ?> หรือไม่? <font color="red">หากลบไปแล้วจะไม่สามารถกู้ข้อมูลกลับมาอีกได้</font></p>
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat red-text">ยืนยัน</a>
+                    <a href="conremove.php?CON=<? echo $row[0]; ?>" class="modal-action modal-close waves-effect waves-red btn-flat red-text">ยืนยัน</a>
                   </div>
                 </div>
               </div>
