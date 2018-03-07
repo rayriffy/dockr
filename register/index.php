@@ -91,7 +91,11 @@
                 </div>
                 <div class="input-field col s12">
                     <input id="cpassword_mo" name="cp" type="password" class="validate" required>
-                    <label for="cpassword_mo">Password</label>
+                    <label for="cpassword_mo">Confirm Password</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="email" type="email" name="m" class="validate" required>
+                    <label for="email" data-error="Please enter valid email" data-success="">Email</label>
                 </div>
                 <div class="col s8">
                     <button class="btn waves-effect waves-light blue col s12" type="submit">REGISTER</button>
