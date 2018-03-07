@@ -53,7 +53,7 @@
     
     //OPERATION AND DONE
     $sql = "INSERT INTO `".$usr_id."`(`con_name`, `con_image`, `con_time`, `con_ip`) VALUES ('".$name."','".$imageres."',".$time.",'".$ip."')";
-    shell_exec("sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." -d ".$imageres);
+    shell_exec("env && sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." -d ".$imageres);
     $query = mysql_query($sql);
     mysql_close();
     header('Location: ./');

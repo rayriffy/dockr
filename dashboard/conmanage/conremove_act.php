@@ -13,7 +13,7 @@
     }
     $sql="DELETE FROM `".$usr_id."` WHERE `con_name` LIKE ".$container;
     mysql_query($sql);
-    shell_exec("sudo docker rm ".$container);
+    shell_exec("env && sudo docker rm ".$container);
     mysql_close();
     header('Location: ./');
 ?>
