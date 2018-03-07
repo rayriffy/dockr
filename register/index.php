@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Dockr</title>
+  <title>Register | Dockr</title>
   <noscript>
     <META HTTP-EQUIV="Refresh" CONTENT="0;URL=js_err.html">
   </noscript>
@@ -78,49 +78,28 @@
       <div class="col l4 offset-l4 s10 offset-s1">
         <div class="card">
           <div class="card-content">
-            <span class="card-title">Login</span>
+            <span class="card-title">Register</span>
             <div class="row">
-             <?
-                if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==4010)
-                {
-              ?>
-              <div class="chip green lighten-1 white-text col s12">
-                <center>Logout Successfully :-)
-                <i class="close material-icons">close</i></center>
-              </div>
-              <?
-                  setcookie('login_stat',null,time()-7200,'/');
-                }
-                else if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==7700)
-                {
-              ?>
-              <div class="chip red lighten-1 white-text col s12">
-                <center>Invalid username/password :-(
-                <i class="close material-icons">close</i></center>
-              </div>
-              <?
-                  setcookie('login_stat',null,time()-7200,'/');
-                }
-              ?>
-              <form action="login.php" method="POST">
+              <form action="regis.php" method="POST">
                 <div class="input-field col s12">
-                  <input id="username_mo" name="u" type="text" class="validate" required>
-                  <label for="username_mo">Username</label>
+                    <input id="username_mo" name="u" type="text" class="validate" required>
+                    <label for="username_mo">Username</label>
                 </div>
                 <div class="input-field col s12">
-                  <input id="password_mo" name="p" type="password" class="validate" required>
-                  <label for="password_mo">Password</label>
+                    <input id="password_mo" name="p" type="password" class="validate" required>
+                    <label for="password_mo">Password</label>
                 </div>
-                <button class="btn waves-effect waves-light blue col s12" type="submit">LOGIN</button>
+                <div class="input-field col s12">
+                    <input id="cpassword_mo" name="cp" type="password" class="validate" required>
+                    <label for="cpassword_mo">Password</label>
+                </div>
+                <div class="col s8">
+                    <button class="btn waves-effect waves-light blue col s12" type="submit">REGISTER</button>
+                </div>
+                <div class="col s4">
+                    <button class="btn waves-effect waves-light orange darken-1 col s12" type="reset">RESET</button>
+                </div>
               </form>
-            </div>
-            <div class="row">
-              <div class="col s12">
-                <center class="grey-text darken-1">New user?</center>
-              </div>
-              <div class="col s12">
-                <a href="register" class="btn waves-effect waves-light blue darken-3 col s8 offset-s2">REGISTER</a>
-              </div>
             </div>
           </div>
         </div>
