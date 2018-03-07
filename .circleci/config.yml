@@ -29,6 +29,16 @@ jobs:
           command: |
             cd ~/phplint
             ./vendor/bin/parallel-lint ~/dockr/*
+      - store_artifacts:
+          path: ~/dockr
+      - store_artifacts:
+          path: ~/phplint
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/dockr
+    steps:
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "c7:29:52:e0:f0:33:ca:91:1b:30:3a:96:1f:34:a7:fd"
@@ -42,7 +52,14 @@ jobs:
             ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'rm -rf ~/production/dockr.rayriffy.com/* && unzip ~/landing/dockr_deploy.zip -d ~/production/dockr.rayriffy.com && rm -rf ~/landing/dockr_deploy.zip'
       - store_artifacts:
           path: ~/dockr_deploy.zip
-      - store_artifacts:
-          path: ~/dockr
-      - store_artifacts:
-          path: ~/phplint
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
