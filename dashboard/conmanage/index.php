@@ -218,7 +218,7 @@
                 <h5>General</h5>
             </div>
             <div class="input-field col s6">
-              <input id="concre_name" name="concre_name" type="text" class="validate" required>
+              <input id="concre_name" name="concre_name" type="text" class="validate">
               <label for="concre_name">Container Name</label>
             </div>
             <div class="input-field col s6">
@@ -238,7 +238,7 @@
               <h5>Port Blinding</h5>
             </div>
             <div class="col s12">
-              <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai addinput" id="addinput">เพิ่ม Port</button>
+              <button class="col l6 s12 btn blue waves-effect waves-light thai addinput" id="addinput">เพิ่ม Port</button>
             </div>
             <div class="portinput" id="portinput"></div>
           </div>

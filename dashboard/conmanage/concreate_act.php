@@ -1,8 +1,11 @@
 <?
     require_once('../../script/config.php');
+
     //GET REQUIRED INFORMATION
     $usr_id = $_COOKIE['usr_id'];
     $image = $_REQUEST['concre_image'];
+    $port_con=$_POST['conport'];
+    $port_bind=$_POST['bindport'];
     $time = time()+rand(10,40);
     $name = "usr".$usr_id."_".$_REQUEST['concre_name'];
 
@@ -30,6 +33,21 @@
         $ip = $m1.".".$m2.".".rand(0,255).".".rand(0,255);
     }
 
+    //BIND PORT
+    $issqlport=false;
+    $sqlport="";
+    if($port_bind && $port_con)
+    {
+        $issqlport=true;
+        for($i=0;$i<count($port_con);$i++)
+        {
+            if($port_bind[$i]!=null && $port_con[$i]!=null)
+            {
+                $sqlport=$sqlport."-p ".$port_bind[$i].":".$port_con." ";
+            }
+        }
+    }
+
     //SELECT CONTAINER
     switch ($image) {
         case "centos":
@@ -53,9 +71,18 @@
     
     //OPERATION AND DONE
     $sql = "INSERT INTO `".$usr_id."`(`con_name`, `con_image`, `con_time`, `con_ip`) VALUES ('".$name."','".$imageres."',".$time.",'".$ip."')";
-    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$imageres;
-    $output=shell_exec($cmd);
+    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$sqlport.$imageres;
+    if(!$debug || ($debug && $debug_level==2)){ $output=shell_exec($cmd); }
     $query = mysql_query($sql);
     mysql_close();
-    header('Location: ./');
+    if(!$debug){ header('Location: ./'); }
+    if($debug){
+        echo '-----BEGIN DEBUGING-----';
+        echo '<br />IS SQL PORT: '.$issqlport;
+        echo '<br />SQL PORT: '.$sqlport;
+        echo '<br />SQL CON: '.$sql;
+        echo '<br />CMD: '.$cmd;
+        echo '<br />CMD OUTPUT: '.$output;
+        echo '<br />-----END DEBUGING-----';
+    }
 ?>
