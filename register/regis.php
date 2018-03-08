@@ -6,9 +6,26 @@
     $cpass=hashplz($_REQUEST['cp']);
     $mail=$_REQUEST['m'];
 
+    //CONFIRM NO USERNAME OR EMAIL DUP
+    $usermaildup=null;
+    $sql="SELECT `usr_id` FROM `userdata` WHERE `usrname` LIKE '".$user."' OR `email` LIKE '".$mail."'";
+    $query=mysql_query($sql);
+    while($row=mysql_fetch_array($query))
+    {
+        $usermaildup=$row[0];
+    }
+    if($usermaildup!=null)
+    {
+        setcookie('regis_stat',7500,time()+6000,'/');
+        header('Location: ./');
+        die(':P');
+    }
+
     //CONFIRM PASS CPASS MATCH
     if($pass!=$cpass)
     {
+        setcookie('regis_stat',7600,time()+6000,'/');
+        header('Location: ./');
         die(':P');
     }
 
@@ -36,6 +53,8 @@
     }
 
     //CREATE DOCKER BRIDGE
+    $cmd="docker network create --subnet=".$subn."/16 usr".$usr_id;
+    $output=shell_exec($cmd);
 
     //OPERATION AND DONE
     $sql="INSERT INTO `userdata`(`usr_id`, `usrname`, `password`, `email`, `netmask`) VALUES (".$usr_id.",'".$user."','".$pass."','".$mail."','".$subn."')";
@@ -49,6 +68,6 @@
       ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
     $query=mysql_query($sql);
     mysql_close();
-
-    echo 'DONE';
+    setcookie('regis_stat',4261,time()+6000,'/');
+    header('Location: ../');
 ?>

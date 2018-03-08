@@ -101,6 +101,16 @@
               <?
                   setcookie('login_stat',null,time()-7200,'/');
                 }
+                else if(isset($_COOKIE['regis_stat']) && $_COOKIE['regis_stat']==4261)
+                {
+              ?>
+              <div class="chip green lighten-1 white-text col s12">
+                <center>Register Successfully!
+                <i class="close material-icons">close</i></center>
+              </div>
+              <?
+                  setcookie('regis_stat',null,time()-7200,'/');
+                }
               ?>
               <form action="login.php" method="POST">
                 <div class="input-field col s12">

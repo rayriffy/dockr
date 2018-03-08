@@ -80,6 +80,28 @@
           <div class="card-content">
             <span class="card-title">Register</span>
             <div class="row">
+             <?
+                if(isset($_COOKIE['regis_stat']) && $_COOKIE['regis_stat']==7600)
+                {
+              ?>
+              <div class="chip red lighten-1 white-text col s12">
+                <center>ERR: Password and cnfirm password not match
+                <i class="close material-icons">close</i></center>
+              </div>
+              <?
+                  setcookie('regis_stat',null,time()-7200,'/');
+                }
+                else if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==7500)
+                {
+              ?>
+              <div class="chip red lighten-1 white-text col s12">
+                <center>ERR: This username/email has already taken
+                <i class="close material-icons">close</i></center>
+              </div>
+              <?
+                  setcookie('login_stat',null,time()-7200,'/');
+                }
+              ?>
               <form action="regis.php" method="POST">
                 <div class="input-field col s12">
                     <input id="username_mo" name="u" type="text" class="validate" required>
