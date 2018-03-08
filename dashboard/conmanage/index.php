@@ -238,7 +238,7 @@
               <h5>Port Blinding</h5>
             </div>
             <div class="col s12">
-              <button class="col l6 s12 btn blue waves-effect waves-light thai addinput" id="addinput">เพิ่ม Port</button>
+              <div class="col l6 s12 btn blue waves-effect waves-light thai addinput" id="addinput">เพิ่ม Port</div>
             </div>
             <div class="portinput" id="portinput"></div>
           </div>
