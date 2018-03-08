@@ -1,5 +1,7 @@
 <?
     require_once('../../script/config.php');
+    $debug=true;
+    $debug_level=1;
 
     //GET REQUIRED INFORMATION
     $usr_id = $_COOKIE['usr_id'];
@@ -34,16 +36,38 @@
     }
 
     //BIND PORT
-    $issqlport=false;
-    $sqlport="";
+    $iscmdport=false;
+    $cmdport="";
     if($port_bind && $port_con)
     {
-        $issqlport=true;
+        $iscmdport=true;
         for($i=0;$i<count($port_con);$i++)
         {
+            //CHECK IF NOT NULL
             if($port_bind[$i]!=null && $port_con[$i]!=null)
             {
-                $sqlport=$sqlport."-p ".$port_bind[$i].":".$port_con." ";
+                $cmdport=$cmdport."-p ".$port_bind[$i].":".$port_con." ";
+            }
+            //CHECK IF NOT DUP
+            $sqlport="SELECT `portbind` FROM `portmanager` WHERE `portbind`=".$port_bind[$i];
+            $queryport=mysql_query($sqlport);
+            $isportdup=null;
+            while($row=mysql_fetch_array($query))
+            {
+                $isportdup=$row[0];
+            }
+            if($isportdup!=null)
+            {
+                die('ERR: PORT DUPLICATED');
+            }
+        }
+        for($i=0;$i<count($port_con);$i++)
+        {
+            //ADD TO SQL
+            if($port_bind[$i]!=null && $port_con[$i]!=null)
+            {
+                $sqlport="INSERT INTO `portmanager`(`portbind`, `portcon`, `container`) VALUES (".$port_bind[$i].",".$port_con[$i].",'".$name."')";
+                $queryport=mysql_query($sqlport);
             }
         }
     }
@@ -71,15 +95,15 @@
     
     //OPERATION AND DONE
     $sql = "INSERT INTO `".$usr_id."`(`con_name`, `con_image`, `con_time`, `con_ip`) VALUES ('".$name."','".$imageres."',".$time.",'".$ip."')";
-    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$sqlport.$imageres;
+    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$cmdport.$imageres;
     if(!$debug || ($debug && $debug_level==2)){ $output=shell_exec($cmd); }
     $query = mysql_query($sql);
     mysql_close();
     if(!$debug){ header('Location: ./'); }
     if($debug){
         echo '-----BEGIN DEBUGING-----';
-        echo '<br />IS SQL PORT: '.$issqlport;
-        echo '<br />SQL PORT: '.$sqlport;
+        echo '<br />IS CMD PORT: '.$iscmdport;
+        echo '<br />CMD PORT: '.$cmdport;
         echo '<br />SQL CON: '.$sql;
         echo '<br />CMD: '.$cmd;
         echo '<br />CMD OUTPUT: '.$output;

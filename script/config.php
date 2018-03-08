@@ -10,7 +10,4 @@
   mysql_query("SET character_set_results=utf8");
   mysql_query("SET character_set_client=utf8");
   mysql_query("SET character_set_connection=utf8");
-
-  define('debug', true);
-  define('debug_level', 1);
 ?>
