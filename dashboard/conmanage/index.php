@@ -263,7 +263,7 @@
       Materialize.updateTextFields();
     });
     $('#addinput').click(function(){
-      $('#portinput').append("<div class='col s6'><div class='input-field col s3'><input id='port_container' name='conport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_container'>Container Port</label></div><div class='input-field col s3'><input id='port_bind' name='bindport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_bind'>Foward to...</label></div></div>")
+      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_bind'>Foward to...</label></div></div>")
     });
   </script>
 </body>
