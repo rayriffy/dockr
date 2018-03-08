@@ -7,15 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Check PHP version
-          command: php -v
-      - run:
           name: Test Files
           command: |
             cd ~/phplint
             ./vendor/bin/parallel-lint ~/dockr/*
-      - store_artifacts:
-          path: ~/dockr
   deploy:
     machine:
         enabled: true
@@ -26,15 +21,9 @@ jobs:
           fingerprints:
             - "c7:29:52:e0:f0:33:ca:91:1b:30:3a:96:1f:34:a7:fd"
       - run:
-          name: Zipping files
-          command: cd ~/dockr && zip -r ~/dockr_deploy.zip *
-      - run:
           name: Deploy to Server
           command: |
-            scp -C -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd -r ~/dockr_deploy.zip circleci@deploy.rayriffy.com:~/landing/dockr_deploy.zip
-            ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'rm -rf ~/production/dockr.rayriffy.com/* && unzip ~/landing/dockr_deploy.zip -d ~/production/dockr.rayriffy.com && rm -rf ~/landing/dockr_deploy.zip'
-      - store_artifacts:
-          path: ~/dockr_deploy.zip
+            ssh -i ~/.ssh/id_rsa_c72952e0f033ca911b303a961f34a7fd circleci@deploy.rayriffy.com 'cd ~/production/dockr.rayriffy.com && git pull'
 workflows:
   version: 2
   build-and-deploy:

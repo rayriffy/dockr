@@ -1,6 +1,6 @@
 <?
     require_once('../../script/config.php');
-    $debug=true;
+    $debug=false;
     $debug_level=1;
 
     //GET REQUIRED INFORMATION
