@@ -46,7 +46,7 @@
             //CHECK IF NOT NULL
             if($port_bind[$i]!=null && $port_con[$i]!=null)
             {
-                $cmdport=$cmdport."-p ".$port_bind[$i].":".$port_con." ";
+                $cmdport=$cmdport."-p ".$port_bind[$i].":".$port_con[$i]." ";
             }
             //CHECK IF NOT DUP
             $sqlport="SELECT `portbind` FROM `portmanager` WHERE `portbind`=".$port_bind[$i];
@@ -61,13 +61,16 @@
                 die('ERR: PORT DUPLICATED');
             }
         }
-        for($i=0;$i<count($port_con);$i++)
+        if(!$debug)
         {
-            //ADD TO SQL
-            if($port_bind[$i]!=null && $port_con[$i]!=null)
+            for($i=0;$i<count($port_con);$i++)
             {
-                $sqlport="INSERT INTO `portmanager`(`portbind`, `portcon`, `container`) VALUES (".$port_bind[$i].",".$port_con[$i].",'".$name."')";
-                $queryport=mysql_query($sqlport);
+                //ADD TO SQL
+                if($port_bind[$i]!=null && $port_con[$i]!=null)
+                {
+                    $sqlport="INSERT INTO `portmanager`(`portbind`, `portcon`, `container`) VALUES (".$port_bind[$i].",".$port_con[$i].",'".$name."')";
+                    $queryport=mysql_query($sqlport);
+                }
             }
         }
     }
@@ -97,7 +100,7 @@
     $sql = "INSERT INTO `".$usr_id."`(`con_name`, `con_image`, `con_time`, `con_ip`) VALUES ('".$name."','".$imageres."',".$time.",'".$ip."')";
     $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$cmdport.$imageres;
     if(!$debug || ($debug && $debug_level==2)){ $output=shell_exec($cmd); }
-    $query = mysql_query($sql);
+    if(!$debug) { $query = mysql_query($sql); }
     mysql_close();
     if(!$debug){ header('Location: ./'); }
     if($debug){
