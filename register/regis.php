@@ -32,8 +32,7 @@
     //COUNT
     $sql="SELECT `usr_id` FROM `userdata` WHERE 1";
     $query=mysql_query($sql);
-    $usr_id=mysql_num_rows($result);
-    $usr_id++;
+    $usr_id=mysql_num_rows($result)+2;
 
     //CREATE SUBNET
     $subn = rand(0,255).".".rand(0,255).".0.0";
@@ -53,7 +52,7 @@
     }
 
     //CREATE DOCKER BRIDGE
-    $cmd="docker network create --subnet=".$subn."/16 usr".$usr_id;
+    $cmd="sudo docker network create --subnet=".$subn."/16 usr".$usr_id;
     $output=shell_exec($cmd);
 
     //OPERATION AND DONE
