@@ -214,8 +214,11 @@
         <form action="concreate_act.php" method="POST">
         <div class="col l6 offset-l3 s12">
           <div class="row">
+            <div class="col s12">
+                <h5>General</h5>
+            </div>
             <div class="input-field col s6">
-              <input id="concre_name" name="concre_name" type="text" class="validate">
+              <input id="concre_name" name="concre_name" type="text" class="validate" required>
               <label for="concre_name">Container Name</label>
             </div>
             <div class="input-field col s6">
@@ -229,7 +232,20 @@
               </select>
               <label>Images</label>
             </div>
-            <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai" type="submit">สร้าง container</button>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <h5>Port Blinding</h5>
+            </div>
+            <div class="col s12">
+              <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai addinput" id="addinput">เพิ่ม Port</button>
+            </div>
+            <div class="portinput" id="portinput"></div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai" type="submit">สร้าง container</button>
+            </div>
           </div>
         </div>
         </form>
@@ -245,6 +261,9 @@
   <script>
     $(document).ready(function() {
       Materialize.updateTextFields();
+    });
+    $('#addinput').click(function(){
+      $('#portinput').append("<div class='col s6'><div class='input-field col s3'><input id='port_container' name='conport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_container'>Container Port</label></div><div class='input-field col s3'><input id='port_bind' name='bindport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_bind'>Foward to...</label></div></div>")
     });
   </script>
 </body>
