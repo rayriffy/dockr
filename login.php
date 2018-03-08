@@ -23,7 +23,7 @@
     else
     {
       setcookie('login_stat',null,time()-7200,'/');
-      setcookie('token',hash('fnv164', "9Qwg52Wu".$user_id, false),time()+7200,'/');
+      setcookie('token',hash('fnv164', "t7Rd4XTi".$user_id, false),time()+7200,'/');
       setcookie('usr_id',$user_id,time()+7200,'/');
       header('Location: dashboard/');
     }

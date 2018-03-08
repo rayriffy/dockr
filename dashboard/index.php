@@ -152,14 +152,14 @@
                 </thead>
                 <tbody>
                 <?
-                  $sql="SELECT `con_name` FROM `".$_COOKIE['usr_id']."` WHERE 1";
+                  $sql="SELECT `con_name`,`con_start ` FROM `".$_COOKIE['usr_id']."` WHERE 1";
                   $query=mysql_query($sql);
                   while($row=mysql_fetch_array($query))
                   {
                 ?>
                   <tr>
-                    <td><? echo $row[0]; ?></td>
-                    <td class="green-text thai">ปกติ</td>
+                    <td><? list($cache, $con_name) = explode("_",$row[0]); echo $con_name; ?></td>
+                    <td class="thai"><? if($row[1]) { ?>ระบบปกติ<? } else { ?>container ยังไม่ถูกเปิดใช้งาน<? } ?></td>
                   </tr>
                 <?
                   }
