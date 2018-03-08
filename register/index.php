@@ -91,7 +91,7 @@
               <?
                   setcookie('regis_stat',null,time()-7200,'/');
                 }
-                else if(isset($_COOKIE['login_stat']) && $_COOKIE['login_stat']==7500)
+                else if(isset($_COOKIE['regis_stat']) && $_COOKIE['regis_stat']==7500)
                 {
               ?>
               <div class="chip red lighten-1 white-text col s12">
@@ -99,7 +99,7 @@
                 <i class="close material-icons">close</i></center>
               </div>
               <?
-                  setcookie('login_stat',null,time()-7200,'/');
+                  setcookie('regis_stat',null,time()-7200,'/');
                 }
               ?>
               <form action="regis.php" method="POST">
