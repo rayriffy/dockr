@@ -154,7 +154,7 @@
                   {
                     list($cache, $con_name) = explode("_",$row[0]);
               ?>
-              <div class="col l4 s6">
+              <div class="col l4 s12">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light"><img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER"></div>
                   <div class="card-content">
@@ -170,7 +170,7 @@
                     </p>
                   </div>
                   <div class="card-action thai">
-                    <? if($row[4]) { ?><a class="red-text" href="constop_act.php?CON=<? echo $row[0]; ?>">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>">เปิดใช้งาน</a><? } ?>
+                    <? if($row[4]) { ?><a class="red-text" href="constop_act.php?CON=<? echo $row[0]; ?>" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">เปิดใช้งาน</a><? } ?>
                   </div>
                 </div>
                 <div id="remove-<? echo $row[0]; ?>" class="modal thai">
@@ -180,7 +180,7 @@
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
-                    <a href="conremove_act.php?CON=<? echo $row[0]; ?>" class="modal-action modal-close waves-effect waves-red btn-flat red-text">ยืนยัน</a>
+                    <a href="conremove_act.php?CON=<? echo $row[0]; ?>" class="modal-action modal-close waves-effect waves-red btn-flat red-text" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">ยืนยัน</a>
                   </div>
                 </div>
               </div>
@@ -189,7 +189,7 @@
                   else
                   {
               ?>
-              <div class="col l4 s6">
+              <div class="col l4 s12">
                 <div class="card">
                   <div class="card-content">
                     <center><i class="large material-icons">error_outline</i><br /><h5 class="thai">กำลังสร้าง container</h5><br /><p class="thai">ใช้เวลาประมาณ 1-2 นาที</p></center>
@@ -244,7 +244,16 @@
           </div>
           <div class="row">
             <div class="col s12">
-              <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai" type="submit">สร้าง container</button>
+              <h5>Environment Variable</h5>
+            </div>
+            <div class="col s12">
+              <div class="col l6 s12 btn blue waves-effect waves-light thai addvariable" id="addvariable">เพิ่ม Variable</div>
+            </div>
+            <div class="envinput" id="envinput"></div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button class="col l6 offset-l3 s12 btn blue waves-effect waves-light thai" type="submit" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">สร้าง container</button>
             </div>
           </div>
         </div>
@@ -263,7 +272,10 @@
       Materialize.updateTextFields();
     });
     $('#addinput').click(function(){
-      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='text' class='validate' onkeypress='return event.charCode >= 48 && event.charCode <= 57'><label for='port_bind'>Foward to...</label></div></div>")
+      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='text' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='text' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
+    });
+    $('#addvariable').click(function(){
+      $('#envinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='text' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='text' class='validate'><label for='env_var'>Value</label></div></div>")
     });
   </script>
 </body>

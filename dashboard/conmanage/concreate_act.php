@@ -8,6 +8,8 @@
     $image = $_REQUEST['concre_image'];
     $port_con=$_POST['conport'];
     $port_bind=$_POST['bindport'];
+    $env_name=$_POST['env_name'];
+    $env_var=$_POST['env_var'];
     $time = time()+rand(10,40);
     $name = "usr".$usr_id."_".$_REQUEST['concre_name'];
 
@@ -75,6 +77,22 @@
         }
     }
 
+    //ENVIRONMENT VARIABLE
+    $isenvar=false;
+    $cmdenv="";
+    if($env_name && $env_var)
+    {
+        $isenvar=true;
+        for($i=0;$i<count($env_name);$i++)
+        {
+            //CHECK IF NOT NULL
+            if($env_name[$i]!=null && $env_var[$i]!=null)
+            {
+                $cmdenv=$cmdenv."-e ".$env_name[$i]."=".$env_var[$i]." ";
+            }
+        }
+    }
+
     //SELECT CONTAINER
     switch ($image) {
         case "centos":
@@ -98,7 +116,7 @@
     
     //OPERATION AND DONE
     $sql = "INSERT INTO `".$usr_id."`(`con_name`, `con_image`, `con_time`, `con_ip`) VALUES ('".$name."','".$imageres."',".$time.",'".$ip."')";
-    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$cmdport.$imageres;
+    $cmd = "sudo docker create --name ".$name." --net usr".$usr_id." --ip ".$ip." ".$cmdport.$cmdenv.$imageres;
     if(!$debug || ($debug && $debug_level==2)){ $output=shell_exec($cmd); }
     if(!$debug) { $query = mysql_query($sql); }
     mysql_close();
@@ -107,6 +125,8 @@
         echo '-----BEGIN DEBUGING-----';
         echo '<br />IS CMD PORT: '.$iscmdport;
         echo '<br />CMD PORT: '.$cmdport;
+        echo '<br />IS ENV VAR: '.$isenvar;
+        echo '<br />CMD ENV: '.$cmdenv;
         echo '<br />SQL CON: '.$sql;
         echo '<br />CMD: '.$cmd;
         echo '<br />CMD OUTPUT: '.$output;
