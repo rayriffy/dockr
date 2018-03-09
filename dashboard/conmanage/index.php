@@ -202,7 +202,7 @@
                   {
                     list($cache, $con_name) = explode("_",$row[0]);
               ?>
-              <div class="col l4 s12">
+              <div class="col l4 m6 s12">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light"><img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER"></div>
                   <div class="card-content">
@@ -265,7 +265,7 @@
         <form action="concreate_act.php" method="POST">
         <div class="col l6 offset-l3 s12">
           <div class="row">
-            <div class="col s12">
+            <div class="col s8 offset-s4">
                 <h5>General</h5>
             </div>
             <div class="input-field col s6">
@@ -323,10 +323,10 @@
       Materialize.updateTextFields();
     });
     $('#addinput').click(function(){
-      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='number' min='1024' max='49151' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='number' min='1024' max='49151' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
+      $('#portinput').append("<div class='col l6 m12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='number' min='1024' max='49151' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='number' min='1024' max='49151' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
     });
     $('#addvariable').click(function(){
-      $('#envinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='text' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='text' class='validate'><label for='env_var'>Value</label></div></div>")
+      $('#envinput').append("<div class='col l6 m12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='text' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='text' class='validate'><label for='env_var'>Value</label></div></div>")
     });
   </script>
 </body>
