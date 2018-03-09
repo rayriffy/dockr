@@ -113,7 +113,7 @@
 <body>
   <nav class="blue darken-2">
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo center">Docker Laboratory System</a>
+      <a href="#!" class="brand-logo center">Dockr</a>
       <ul id="nav-mobile" class="left hide-on-large-only">
         <li><a href="#" data-activates="slide-out" class="button-collapse left"><i class="material-icons">menu</i></a></li>
       </ul>

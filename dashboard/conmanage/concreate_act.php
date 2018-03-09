@@ -49,18 +49,35 @@
             if($port_bind[$i]!=null && $port_con[$i]!=null)
             {
                 $cmdport=$cmdport."-p ".$port_bind[$i].":".$port_con[$i]." ";
-            }
-            //CHECK IF NOT DUP
-            $sqlport="SELECT `portbind` FROM `portmanager` WHERE `portbind`=".$port_bind[$i];
-            $queryport=mysql_query($sqlport);
-            $isportdup=null;
-            while($row=mysql_fetch_array($query))
-            {
-                $isportdup=$row[0];
-            }
-            if($isportdup!=null)
-            {
-                die('ERR: PORT DUPLICATED');
+
+                //CHECK IS PORT NUMBER AND NOT VIOLATED
+                if(!is_numeric($port_bind[$i]) || !is_numeric($port_con[$i]))
+                {
+                    setcookie('con_stat',7503,time()+6000,'/');
+                    header('Location: ./');
+                    die('ERR: PORT NOT NUMBER');
+                }
+                if($port_bind[$i]==21 || $port_bind[$i]==22 || $port_bind[$i]==25 || $port_bind[$i]==23 || $port_bind[$i]==80 || $port_bind[$i]==143 || $port_bind[$i]==443 || $port_bind[$i]==587 || $port_bind[$i]==993 || $port_bind[$i]==3306 || $port_bind[$i]==34567)
+                {
+                    setcookie('con_stat',7504,time()+6000,'/');
+                    header('Location: ./');
+                    die('ERR: SOME BINDING PORT ARE NOT ALLOWED TO USE');
+                }
+
+                //CHECK IF NOT DUP
+                $sqlport="SELECT `portbind` FROM `portmanager` WHERE `portbind`=".$port_bind[$i];
+                $queryport=mysql_query($sqlport);
+                $isportdup=null;
+                while($row=mysql_fetch_array($query))
+                {
+                    $isportdup=$row[0];
+                }
+                if($isportdup!=null)
+                {
+                    setcookie('con_stat',7502,time()+6000,'/');
+                    header('Location: ./');
+                    die('ERR: PORT DUPLICATED');
+                }
             }
         }
         if(!$debug)

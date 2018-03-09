@@ -135,6 +135,54 @@
   </ul>
 
   <div class="container">
+    <?
+      if(isset($_COOKIE['con_stat']))
+      {
+    ?>
+    <div class="row">
+      <?
+        if($_COOKIE['con_stat']==7501)
+        {
+      ?>
+      <div class="chip red lighten-1 white-text col s12">
+        <center>ERROR: Permission Denied
+        <i class="close material-icons">close</i></center>
+      </div>
+      <?
+        }
+        else if($_COOKIE['con_stat']==7502)
+        {
+      ?>
+      <div class="chip red lighten-1 white-text col s12">
+        <center>ERROR: Some binding port are already in-use
+        <i class="close material-icons">close</i></center>
+      </div>
+      <?
+        }
+        else if($_COOKIE['con_stat']==7503)
+        {
+      ?>
+      <div class="chip red lighten-1 white-text col s12">
+        <center>ERROR: Violated input!
+        <i class="close material-icons">close</i></center>
+      </div>
+      <?
+        }
+        else if($_COOKIE['con_stat']==7504)
+        {
+      ?>
+      <div class="chip red lighten-1 white-text col s12">
+        <center>CRITICAL ERROR: Some binging port are not allowed to use
+        <i class="close material-icons">close</i></center>
+      </div>
+      <?
+        }
+      ?>
+    </div>
+    <?
+      setcookie('con_stat',null,time()-6000,'/');
+      }
+    ?>
     <div class="row">
       <div class="col l12 s12">
         <div class="card">
@@ -165,12 +213,12 @@
                     <span class="card-title grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">close</i></span>
                     <p>
                     <br />
-                    <div class="row"><b>IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</div>
+                    <div class="row"><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</div>
                     <div class="row"><a href="#remove-<? echo $row[0]; ?>" class="red btn waves-effect waves-light modal-trigger thai col s12">ลบ container</a></div>
                     </p>
                   </div>
                   <div class="card-action thai">
-                    <? if($row[4]) { ?><a class="red-text" href="constop_act.php?CON=<? echo $row[0]; ?>" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">ปิดใช้งาน</a><? } else { ?><a class="green-text" href="constart_act.php?CON=<? echo $row[0]; ?>" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">เปิดใช้งาน</a><? } ?>
+                    <? if($row[4]) { ?><form action="constop_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="red-text" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">ปิดใช้งาน</a></form><? } else { ?><form action="constart_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="green-text" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">เปิดใช้งาน</a></form><? } ?>
                   </div>
                 </div>
                 <div id="remove-<? echo $row[0]; ?>" class="modal thai">
@@ -180,7 +228,7 @@
                   </div>
                   <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
-                    <a href="conremove_act.php?CON=<? echo $row[0]; ?>" class="modal-action modal-close waves-effect waves-red btn-flat red-text" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">ยืนยัน</a>
+                    <form action="conremove_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a href="#" class="modal-action modal-close waves-effect waves-red btn-flat red-text" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">ยืนยัน</a></form>
                   </div>
                 </div>
               </div>
@@ -272,10 +320,10 @@
       Materialize.updateTextFields();
     });
     $('#addinput').click(function(){
-      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='text' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='text' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
+      $('#portinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='number' maxlength='5' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='number' maxlength='5' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
     });
     $('#addvariable').click(function(){
-      $('#envinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='text' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='text' class='validate'><label for='env_var'>Value</label></div></div>")
+      $('#envinput').append("<div class='col l6 s12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='number' maxlength='5' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='number' maxlength='5' class='validate'><label for='env_var'>Value</label></div></div>")
     });
   </script>
 </body>
