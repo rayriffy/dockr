@@ -266,7 +266,7 @@
                 <h5>General</h5>
             </div>
             <div class="input-field col s6">
-              <input id="concre_name" name="concre_name" type="text" class="validate">
+              <input id="concre_name" name="concre_name" type="text" class="validate" required>
               <label for="concre_name">Container Name</label>
             </div>
             <div class="input-field col s6">
