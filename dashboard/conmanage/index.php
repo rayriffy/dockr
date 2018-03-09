@@ -227,8 +227,11 @@
                     <p>ยืนยันที่จะทำการลบ container <? echo $con_name; ?> หรือไม่? <font color="red">หากลบไปแล้วจะไม่สามารถกู้ข้อมูลกลับมาอีกได้</font></p>
                   </div>
                   <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
-                    <form action="conremove_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a href="#" class="modal-action modal-close waves-effect waves-red btn-flat red-text" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">ยืนยัน</a></form>
+                    <form action="conremove_act.php" method="POST">
+                      <input type="hidden" name="CON" value="<? echo $row[0]; ?>" />
+                      <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">ยกเลิก</a>
+                      <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat red-text" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">ยืนยัน</a>
+                    </form>
                   </div>
                 </div>
               </div>
