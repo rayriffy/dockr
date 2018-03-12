@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/css/critical.css" lazyload="1">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Kanit:300,300i,400,400i,700,700i|Material+Icons&amp;subset=thai" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Sans+Thai+UI:300,400,500,700|Material+Icons&amp;subset=thai" rel="stylesheet">
 
 
   <!-- Detail -->
