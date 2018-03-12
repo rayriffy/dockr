@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="/css/critical.css" lazyload="1">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400,400i,700,700i|Material+Icons&amp;subset=thai" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Noto+Sans+Thai+UI:300,400,500,700|Material+Icons&amp;subset=thai" rel="stylesheet">
 
 
   <!-- Detail -->
@@ -80,7 +80,15 @@
   }
   .thai
   {
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Noto Sans Thai UI';
+    font-style: normal;
+    font-weight: 400;
+  }
+  b.thai
+  {  
+    font-family: 'Noto Sans Thai UI';
+    font-style: normal;
+    font-weight: 700;
   }
   header, main, footer, .container, nav {
   padding-left: 300px;
