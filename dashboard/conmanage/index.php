@@ -207,7 +207,10 @@
               ?>
               <div class="col l4 m6 s12">
                 <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light"><img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER"></div>
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER">
+                    <? if($row[4]) { ?><form action="constop_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="btn-floating halfway-fab waves-effect waves-light red" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()"><i class="material-icons">stop</i></a></form><? } else { ?><form action="constart_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="btn-floating halfway-fab waves-effect waves-light green" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()"><i class="material-icons">play_arrow</i></a></form><? } ?>
+                  </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">more_vert</i></span>
                     <? if($row[4]) { ?><p class="thai">ระบบปกติ</p><? } else { ?><p class="thai">container ยังไม่ถูกเปิดใช้งาน</p><? } ?>
@@ -255,9 +258,9 @@
                     <div class="row"><a href="#remove-<? echo $row[0]; ?>" class="red btn waves-effect waves-light modal-trigger thai col s12">ลบ container</a></div>
                     </p>
                   </div>
-                  <div class="card-action thai">
-                    <? if($row[4]) { ?><form action="constop_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="red-text" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">ปิดใช้งาน</a></form><? } else { ?><form action="constart_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="green-text" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()">เปิดใช้งาน</a></form><? } ?>
-                  </div>
+                  <? /* <div class="card-action thai">
+                    
+                  </div> */ ?>
                 </div>
                 <div id="remove-<? echo $row[0]; ?>" class="modal thai">
                   <div class="modal-content">
