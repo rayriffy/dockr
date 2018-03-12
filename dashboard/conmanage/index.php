@@ -205,7 +205,7 @@
                   {
                     list($cache, $con_name) = explode("_",$row[0]);
               ?>
-              <div class="col xl4 l6 s12">
+              <div class="col l6 s12">
                 <div class="card">
                   <div class="card-image">
                     <img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER">
