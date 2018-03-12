@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="/css/critical.css" lazyload="1">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/materialize.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Noto+Sans+Thai+UI:300,400,500,700|Material+Icons&amp;subset=thai" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Sans+Thai+UI:300,400,500,700|Material+Icons&amp;subset=thai" rel="stylesheet">
 
 
   <!-- Detail -->
@@ -80,13 +80,13 @@
   }
   .thai
   {
-    font-family: 'Noto Sans Thai UI';
+    font-family: 'Noto Sans Thai UI','Noto Sans';
     font-style: normal;
     font-weight: 400;
   }
   b.thai
   {  
-    font-family: 'Noto Sans Thai UI';
+    font-family: 'Noto Sans Thai UI','Noto Sans';
     font-style: normal;
     font-weight: 700;
   }
