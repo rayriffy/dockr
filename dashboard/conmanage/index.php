@@ -267,7 +267,7 @@
         <form action="concreate_act.php" method="POST">
         <div class="col l6 offset-l3 s12">
           <div class="row">
-            <div class="col s8 offset-s4">
+            <div class="col s12">
                 <h5>General</h5>
             </div>
             <div class="input-field col s6">
