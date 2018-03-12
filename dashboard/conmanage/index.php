@@ -205,9 +205,9 @@
                   {
                     list($cache, $con_name) = explode("_",$row[0]);
               ?>
-              <div class="col l4 m6 s12">
+              <div class="col xl4 l6 s12">
                 <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
+                  <div class="card-image">
                     <img class="activator" src="/img/cover/<? echo rand(1,8); ?>.jpg" alt="COVER">
                     <? if($row[4]) { ?><form action="constop_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="btn-floating halfway-fab waves-effect waves-light red" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()"><i class="material-icons">stop</i></a></form><? } else { ?><form action="constart_act.php" method="POST"><input type="hidden" name="CON" value="<? echo $row[0]; ?>" /><a class="btn-floating halfway-fab waves-effect waves-light green" href="#" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000); event.preventDefault(); this.parentNode.submit()"><i class="material-icons">play_arrow</i></a></form><? } ?>
                   </div>
@@ -301,7 +301,7 @@
   </div>
   <div id="concreate" class="modal bottom-sheet">
     <div class="modal-content">
-      <h4 class="thai">กำลังสร้าง Container</h4>
+      <h4 class="thai col l10 offset-l2 m12">กำลังสร้าง Container</h4>
       <div class="row">
         <form action="concreate_act.php" method="POST">
         <div class="col l6 offset-l3 s12">
