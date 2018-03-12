@@ -191,9 +191,10 @@
           <div class="card-content">
             <span class="card-title thai">ระบบจัดการ container</span>
             <div class="row">
-              <div class="col s3"><a href="../" class="btn blue waves-effect waves-light thai col s12">ย้อนกลับ</a></div>
-              <div class="col s9"><a href="#concreate" class="btn blue waves-effect waves-light modal-trigger thai col s12">สร้าง container ใหม่</a></div>
+              <div class="col s3"><a href="../" class="btn red waves-effect waves-light thai col s12">ย้อนกลับ</a></div>
+              <div class="col s9"><a href="#concreate" class="btn blue darken-2 waves-effect waves-light modal-trigger thai col s12">สร้าง container ใหม่</a></div>
             </div>
+            <div class="row"><div class="divider"></div></div>
             <div class="row">
               <?
                 $sql="SELECT * FROM `".$_COOKIE['usr_id']."` WHERE 1";
@@ -211,23 +212,23 @@
                     <span class="card-title activator grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">more_vert</i></span>
                     <? if($row[4]) { ?><p class="thai">ระบบปกติ</p><? } else { ?><p class="thai">container ยังไม่ถูกเปิดใช้งาน</p><? } ?>
                   </div>
-                  <div class="card-reveal">
+                  <div class="card-reveal thai">
                     <span class="card-title grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">close</i></span>
                     <p>
                     <br />
                     <div class="row">
                       <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Monitor</div>
+                          <div class="collapsible-header"><i class="material-icons">memory</i>Monitor</div>
                           <div class="collapsible-body"><span><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</span></div>
                         </li>
                         <li>
-                          <div class="collapsible-header"><i class="material-icons">place</i>Ports</div>
+                          <div class="collapsible-header"><i class="material-icons">router</i>Ports</div>
                           <div class="collapsible-body"><span>
                             <table>
                               <thead>
                                 <tr>
-                                  <th>Port container</th>
+                                  <th>Port ต้นทาง</th>
                                   <th>Port ปลายทาง</th>
                                 </tr>
                               </thead>
