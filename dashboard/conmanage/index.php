@@ -215,7 +215,42 @@
                     <span class="card-title grey-text text-darken-4"><? echo $con_name; ?><i class="material-icons right">close</i></span>
                     <p>
                     <br />
-                    <div class="row"><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</div>
+                    <div class="row">
+                      <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Monitor</div>
+                          <div class="collapsible-body"><span><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</span></div>
+                        </li>
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">place</i>Ports</div>
+                          <div class="collapsible-body"><span>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Port container</th>
+                                  <th>Port ปลายทาง</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <?
+                                $sqlp="SELECT * FROM `portmanager` WHERE `container` LIKE '".$row[0]."'";
+                                $queryp=mysql_query($sqlp);
+                                while($rowp=mysql_fetch_array($queryp))
+                                {
+                              ?>
+                                <tr>
+                                  <td><? echo $row[1]; ?></td>
+                                  <td><? echo $row[0]; ?></td>
+                                </tr>
+                              <?
+                                }
+                              ?>
+                              </tbody>
+                            </table>
+                          </span></div>
+                        </li>
+                      </ul>
+                    </div>
                     <div class="row"><a href="#remove-<? echo $row[0]; ?>" class="red btn waves-effect waves-light modal-trigger thai col s12">ลบ container</a></div>
                     </p>
                   </div>
