@@ -73,13 +73,15 @@
   }
   .thai
   {
-    font-family: 'Kanit', sans-serif;
-    font-weight: 300;
-  }
-  .thaib
-  {
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Noto Sans Thai UI','Noto Sans';
+    font-style: normal;
     font-weight: 400;
+  }
+  b.thai, .thaib
+  {  
+    font-family: 'Noto Sans Thai UI','Noto Sans';
+    font-style: normal;
+    font-weight: 700;
   }
   header, main, footer, .container, nav {
   padding-left: 300px;
