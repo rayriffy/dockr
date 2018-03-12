@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="/css/critical.css" lazyload="1">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/materialize.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Sans+Thai+UI:300,400,500,700|Material+Icons&amp;subset=thai" rel="stylesheet">
 
 
   <!-- Detail -->
@@ -56,41 +55,42 @@
 
   <!-- Styling test -->
   <style>
-  .side-nav .user-view .name, .side-nav .userView .name
-  {
-    margin-top: 16px;
-    font-weight: 500;
-  }
-  .side-nav .user-view .permit, .side-nav .userView .permit
-  {
-    padding-bottom: 16px;
-    font-weight: 400;
-  }
-  .side-nav .user-view .name, .side-nav .user-view .permit, .side-nav .userView .name, .side-nav .userView .permit
-  {
-    font-size: 14px;
-    line-height: 24px;
-  }
-  .thai
-  {
-    font-family: 'Noto Sans Thai UI','Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-  }
-  b.thai, .thaib
-  {  
-    font-family: 'Noto Sans Thai UI','Noto Sans';
-    font-style: normal;
-    font-weight: 700;
-  }
-  header, main, footer, .container, nav {
-  padding-left: 300px;
-  }
-  @media only screen and (max-width : 992px) {
-    header, main, footer, .container, nav {
-      padding-left: 0;
+    @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Sans+Thai+UI:300,400,500,700|Material+Icons);
+    .side-nav .user-view .name, .side-nav .userView .name
+    {
+      margin-top: 16px;
+      font-weight: 500;
     }
-  }
+    .side-nav .user-view .permit, .side-nav .userView .permit
+    {
+      padding-bottom: 16px;
+      font-weight: 400;
+    }
+    .side-nav .user-view .name, .side-nav .user-view .permit, .side-nav .userView .name, .side-nav .userView .permit
+    {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    .thai
+    {
+      font-family: 'Noto Sans Thai UI','Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+    }
+    b.thai, .thaib
+    {  
+      font-family: 'Noto Sans Thai UI','Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+    }
+    header, main, footer, .container, nav {
+    padding-left: 300px;
+    }
+    @media only screen and (max-width : 992px) {
+      header, main, footer, .container, nav {
+        padding-left: 0;
+      }
+    }
   </style>
 </head>
 
@@ -301,7 +301,7 @@
   </div>
   <div id="concreate" class="modal bottom-sheet">
     <div class="modal-content">
-      <h4 class="thai col l10 offset-l2 m12">กำลังสร้าง Container</h4>
+      <h4 class="thai">กำลังสร้าง Container</h4>
       <div class="row">
         <form action="concreate_act.php" method="POST">
         <div class="col l6 offset-l3 s12">
