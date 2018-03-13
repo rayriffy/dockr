@@ -237,7 +237,7 @@
                             $mo_MEM="N/A";
                             if($row[4])
                             {
-                              $monitor = shell_exec("sudo docker stats --no-stream --format '{{.CPUPerc}}_{{.MemUsage}}' ".$row[0]);
+                              $monitor = shell_exec("sudo docker stats -a --no-stream --format '{{.CPUPerc}}_{{.MemUsage}}' ".$row[0]);
                               list($mo_CPU, $mo_MEM) = explode("_",$monitor);
                             }
                           ?>
