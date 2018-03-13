@@ -243,8 +243,8 @@
                                 {
                               ?>
                                 <tr>
-                                  <td><? echo $row[1]; ?></td>
-                                  <td><? echo $row[0]; ?></td>
+                                  <td><? echo $rowp[1]; ?></td>
+                                  <td><? echo $rowp[0]; ?></td>
                                 </tr>
                               <?
                                 }
