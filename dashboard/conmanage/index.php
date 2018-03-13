@@ -223,7 +223,16 @@
                       <ul class="collapsible" data-collapsible="accordion">
                         <li>
                           <div class="collapsible-header"><i class="material-icons">memory</i>Monitor</div>
-                          <div class="collapsible-body"><span><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> N/A<br /><b>Memory:</b> N/A<br /><b>Storage:</b> N/A</span></div>
+                          <?
+                            $mo_CPU="N/A";
+                            $mo_MEM="N/A";
+                            if($row[4])
+                            {
+                              $monitor = shell_exec("sudo docker stats --no-stream --format '{{.CPUPerc}}_{{.MemUsage}}:' ".$row[0]);
+                              list($mo_CPU, $mo_MEM) = explode("_",$monitor);
+                            }
+                          ?>
+                          <div class="collapsible-body"><span><b>LOCAL IP:</b> <? echo $row[3]; ?><br /><b>CPU:</b> <? echo $mo_CPU; ?><br /><b>Memory:</b> <? echo $mo_MEM; ?></span></div>
                         </li>
                         <li>
                           <div class="collapsible-header"><i class="material-icons">router</i>Ports</div>
