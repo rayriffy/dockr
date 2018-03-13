@@ -133,8 +133,17 @@
          <img src="/img/bg.jpg">
        </div>
        <svg xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="0 0 48 48" fill="#ffffff" aria-hidden="true"><path d="M24,0C10.74,0 0,10.74 0,24C0,37.26 10.74,48 24,48C37.26,48 48,37.26 48,24C48,10.74 37.26,0 24,0ZM24,41.28C17.988,41.28 12.708,38.208 9.6,33.552C9.66,28.788 19.212,26.16 24,26.16C28.788,26.16 38.328,28.788 38.4,33.552C35.292,38.208 30.012,41.28 24,41.28ZM24,7.2C27.972,7.2 31.2,10.428 31.2,14.4C31.2,18.384 27.972,21.6 24,21.6C20.028,21.6 16.8,18.384 16.8,14.4C16.8,10.428 20.028,7.2 24,7.2Z"></path><path d="M0 0h48v48H0z" fill="none"></path></svg>
-       <span class="white-text name"><b>#USER#</b></span>
-       <span class="white-text permit">#EMAIL#</span>
+      <?
+       $sql="SELECT `usrname`,`email` FROM `userdata` WHERE `usr_id`=".$COOKIE['usr_id'];
+       $query=mysql_query($sql);
+       while($row=mysql_fetch_array($query))
+       {
+         $disp_username=$row[0];
+         $disp_email=$row[1];
+       }
+      ?>
+      <span class="white-text name"><b><? echo $disp_username; ?></b></span>
+      <span class="white-text permit"><? echo $disp_email; ?></span>
     </div></li>
     <li class="active"><a href="#!" class="thai">หน้าหลัก</a></li>
     <li><a href="conmanage" class="thai">จัดการ container</a></li>
@@ -160,7 +169,7 @@
                 </thead>
                 <tbody>
                 <?
-                  $sql="SELECT `con_name`,`con_start ` FROM `".$_COOKIE['usr_id']."` WHERE 1";
+                  $sql="SELECT `con_name`,`con_start` FROM `".$_COOKIE['usr_id']."` WHERE 1";
                   $query=mysql_query($sql);
                   while($row=mysql_fetch_array($query))
                   {
