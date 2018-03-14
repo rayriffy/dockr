@@ -382,7 +382,7 @@
       Materialize.updateTextFields();
     });
     $('#addinput').click(function(){
-      $('#portinput').append("<div class='col l6 m12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='number' min='1024' max='49151' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='number' min='1024' max='49151' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
+      $('#portinput').append("<div class='col l6 m12'><div class='input-field col s6'><input id='port_container' name='conport[]' type='number' min='1' max='49151' class='validate'><label for='port_container'>Container Port</label></div><div class='input-field col s6'><input id='port_bind' name='bindport[]' type='number' min='1' max='49151' class='validate'><label for='port_bind'>Foward to...</label></div></div>")
     });
     $('#addvariable').click(function(){
       $('#envinput').append("<div class='col l6 m12'><div class='input-field col s6'><input id='env_name' name='env_name[]' type='text' class='validate'><label for='env_name'>Variable name</label></div><div class='input-field col s6'><input id='env_var' name='env_var[]' type='text' class='validate'><label for='env_var'>Value</label></div></div>")
