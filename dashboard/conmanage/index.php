@@ -252,7 +252,7 @@
                                   <th>Port ต้นทาง</th>
                                   <th>Port ปลายทาง</th>
                                 </tr>
-                              </thead>
+                              </thead> 
                               <tbody>
                               <?
                                 $sqlp="SELECT * FROM `portmanager` WHERE `container` LIKE '".$row[0]."'";
