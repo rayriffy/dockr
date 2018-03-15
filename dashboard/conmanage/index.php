@@ -363,6 +363,15 @@
           </div>
           <div class="row">
             <div class="col s12">
+              <h5>Additional Options</h5>
+            </div>
+            <div class="row s6">
+              <input type="checkbox" class="filled-in" id="isgpu" disabled="disabled" />
+              <label for="isgpu">This container need GPU</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
               <button class="col l6 offset-l3 s12 btn-large blue darken-2 waves-effect waves-light thai" type="submit" onclick="Materialize.toast('ระบบกำลังทำงาน...', 10000)">สร้าง container</button>
             </div>
           </div>
