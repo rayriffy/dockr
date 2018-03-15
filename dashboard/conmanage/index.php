@@ -367,7 +367,7 @@
             </div>
             <div class="row s6">
               <input type="checkbox" class="filled-in" id="isgpu" disabled="disabled" />
-              <label for="isgpu">This container need GPU</label>
+              <label for="isgpu">This container requires GPU</label>
             </div>
           </div>
           <div class="row">
